@@ -6,55 +6,23 @@
 package kasir;
 
 import java.sql.*;
-import java.util.logging.*;
-import javax.swing.table.DefaultTableModel;
 import lib.*;
 
 /**
  *
  * @author ashary
  */
-public final class DashboardFrame extends javax.swing.JFrame {
+public final class Admin extends javax.swing.JFrame {
     
     private Connection conn;
     private Statement stmt;
     private ResultSet rs;
-    
-    public void showDataToTable() {
-        try {
-            conn = Database.getCon();
-            stmt = conn.createStatement();
-            DefaultTableModel tb = new DefaultTableModel();
-            tb.addColumn("No");
-            tb.addColumn("Nama");
-            tb.addColumn("Harga");
-            tb.addColumn("Status");
-            TableBarang.setModel(tb);
-            rs = stmt.executeQuery("SELECT * FROM `masakan`");
-            while (rs.next()) {
-                tb.addRow(new Object[]{
-                    rs.getString("id_masakan"),
-                    rs.getString("nama_masakan"),
-                    rs.getString("harga"),
-                    rs.getInt("status_masakan") == 1 ? "Tersedia" : "Habis"
-                });
-            }
-            rs.close();
-            stmt.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(DashboardFrame.class.getName()).log(
-                Level.SEVERE, 
-                "Data tidak dapat ditampilkan. {0}", 
-                ex.getMessage());
-        }
-    }
 
     /**
      * Creates new form Dashboard
      */
-    public DashboardFrame() {
+    public Admin() {
         initComponents();
-        showDataToTable();
     }
 
     /**
@@ -66,49 +34,56 @@ public final class DashboardFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TableBarang = new javax.swing.JTable();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        AdminMenuBar = new javax.swing.JMenuBar();
+        UserMenu = new javax.swing.JMenu();
+        AddUser = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         AccountMenu = new javax.swing.JMenu();
+        OrderMenu = new javax.swing.JMenu();
+        TransaksiMenu = new javax.swing.JMenu();
+        LaporanMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kasir");
 
-        TableBarang.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        UserMenu.setText("User");
 
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(TableBarang);
+        AddUser.setText("Add User");
+        UserMenu.add(AddUser);
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jMenuItem1.setText("Manage User");
+        UserMenu.add(jMenuItem1);
 
-        AccountMenu.setText("Account");
+        AdminMenuBar.add(UserMenu);
+
+        AccountMenu.setText("Menu");
         AccountMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AccountMenuMouseClicked(evt);
             }
         });
-        jMenuBar1.add(AccountMenu);
+        AdminMenuBar.add(AccountMenu);
 
-        setJMenuBar(jMenuBar1);
+        OrderMenu.setText("Order");
+        AdminMenuBar.add(OrderMenu);
+
+        TransaksiMenu.setText("Transaksi");
+        AdminMenuBar.add(TransaksiMenu);
+
+        LaporanMenu.setText("Laporan");
+        AdminMenuBar.add(LaporanMenu);
+
+        setJMenuBar(AdminMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGap(0, 606, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 98, Short.MAX_VALUE))
+            .addGap(0, 303, Short.MAX_VALUE)
         );
 
         pack();
@@ -136,28 +111,33 @@ public final class DashboardFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashboardFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashboardFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashboardFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashboardFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new DashboardFrame().setVisible(true);
+            new Admin().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu AccountMenu;
-    private javax.swing.JTable TableBarang;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem AddUser;
+    private javax.swing.JMenuBar AdminMenuBar;
+    private javax.swing.JMenu LaporanMenu;
+    private javax.swing.JMenu OrderMenu;
+    private javax.swing.JMenu TransaksiMenu;
+    private javax.swing.JMenu UserMenu;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

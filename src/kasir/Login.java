@@ -14,10 +14,11 @@ import lib.*;
  *
  * @author ashary
  */
-public class LoginFrame extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
     public static String username;
     public static String password;
     public static int id;
+    public static int id_meja;
     public static String fullname;
     
     private Connection conn;
@@ -27,7 +28,7 @@ public class LoginFrame extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public LoginFrame() {
+    public Login() {
         initComponents();
     }
 
@@ -108,23 +109,55 @@ public class LoginFrame extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             conn = Database.getCon();
-            stmt = conn.prepareStatement("SELECT * FROM `user` WHERE `username` = ? AND `password` = ?");
+            stmt = conn.prepareStatement("SELECT " +
+            "   `user`.`id_user`, " +
+            "   `user`.`username`, " +
+            "   `user`.`password`, " +
+            "   `user`.`nama_user`, " +
+            "   `user`.`id_meja`, " +
+            "   `level`.`nama_level` " +
+            "FROM " +
+            "    `user` " +
+            "INNER JOIN `level` ON `user`.`id_level` = `level`.`id_level` " +
+            "WHERE " +
+            "    `username` = ? AND `password` = ?");
+
             stmt.setString(1, Username.getText());
             stmt.setString(2, Password.getText());
             rs = stmt.executeQuery();
             if (rs.next()) {
-                LoginFrame.username = rs.getString("username");
-                LoginFrame.password = rs.getString("password");
-                LoginFrame.id = rs.getInt("id_user");
-                LoginFrame.fullname = rs.getString("nama_user");
+                Login.username = rs.getString("username");
+                Login.password = rs.getString("password");
+                Login.id = rs.getInt("id_user");
+                Login.fullname = rs.getString("nama_user");
+                Login.id_meja = rs.getInt("id_meja");
                 
-                new DashboardFrame().setVisible(true);
+                String role = rs.getString("nama_level");
+                
+                switch (role) {
+                    case "Administrator":
+                        new Admin().setVisible(true);
+                        break;
+                    case "Waiter":
+                        new Waiter().setVisible(true);
+                        break;
+                    case "Kasir":
+                        new Kasir().setVisible(true);
+                        break;
+                    case "Owner":
+                        new Owner().setVisible(true);
+                        break;
+                    default:
+                        new Pelanggan().setVisible(true);
+                        break;
+                }
+                
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Kata sandi atau nama pengguna anda salah !");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_LoginBtnMouseClicked
 
@@ -144,21 +177,22 @@ public class LoginFrame extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new LoginFrame().setVisible(true);
+            new Login().setVisible(true);
         });
     }
 

@@ -27,9 +27,9 @@ public class Account extends javax.swing.JDialog {
     public Account(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Username.setText(LoginFrame.username);
-        Fullname.setText(LoginFrame.fullname);
-        Password.setText(LoginFrame.password);
+        Username.setText(Login.username);
+        Fullname.setText(Login.fullname);
+        Password.setText(Login.password);
     }
 
     /**
@@ -119,12 +119,12 @@ public class Account extends javax.swing.JDialog {
             stmt.setString(1, Username.getText());
             stmt.setString(2, Password.getText());
             stmt.setString(3, Fullname.getText());
-            stmt.setInt(4, LoginFrame.id);
+            stmt.setInt(4, Login.id);
             stmt.executeUpdate();
             stmt.close();
-            LoginFrame.username = Username.getText();
-            LoginFrame.fullname = Fullname.getText();
-            LoginFrame.password = Password.getText();
+            Login.username = Username.getText();
+            Login.fullname = Fullname.getText();
+            Login.password = Password.getText();
             dispose();
         } catch (SQLException ex) {
             Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
