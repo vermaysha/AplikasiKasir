@@ -5,8 +5,6 @@
  */
 package kasir;
 
-import java.sql.*;
-import lib.*;
 
 /**
  *
@@ -14,15 +12,29 @@ import lib.*;
  */
 public final class Admin extends javax.swing.JFrame {
     
-    private Connection conn;
-    private Statement stmt;
-    private ResultSet rs;
-
     /**
      * Creates new form Dashboard
      */
     public Admin() {
         initComponents();
+        switch (Login.role) {
+            case "Owner":
+                UserMenu.setVisible(false);
+                MenuRes.setVisible(false);
+                OrderMenu.setVisible(false);
+                TransaksiMenu.setVisible(false);
+                break;
+            case "Kasir":
+                MenuRes.setVisible(false);
+                OrderMenu.setVisible(false);
+                break;
+            case "Waiter":
+                MenuRes.setVisible(false);
+                TransaksiMenu.setVisible(false);
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -34,14 +46,18 @@ public final class Admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         AdminMenuBar = new javax.swing.JMenuBar();
         UserMenu = new javax.swing.JMenu();
         AddUser = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        AccountMenu = new javax.swing.JMenu();
+        ManageUserMenu = new javax.swing.JMenuItem();
+        MenuRes = new javax.swing.JMenu();
         OrderMenu = new javax.swing.JMenu();
         TransaksiMenu = new javax.swing.JMenu();
         LaporanMenu = new javax.swing.JMenu();
+        AccountMenu = new javax.swing.JMenu();
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kasir");
@@ -49,29 +65,72 @@ public final class Admin extends javax.swing.JFrame {
         UserMenu.setText("User");
 
         AddUser.setText("Add User");
+        AddUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddUserMouseClicked(evt);
+            }
+        });
+        AddUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddUserActionPerformed(evt);
+            }
+        });
         UserMenu.add(AddUser);
 
-        jMenuItem1.setText("Manage User");
-        UserMenu.add(jMenuItem1);
+        ManageUserMenu.setText("Manage User");
+        ManageUserMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ManageUserMenuMouseClicked(evt);
+            }
+        });
+        ManageUserMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManageUserMenuActionPerformed(evt);
+            }
+        });
+        UserMenu.add(ManageUserMenu);
 
         AdminMenuBar.add(UserMenu);
 
-        AccountMenu.setText("Menu");
+        MenuRes.setText("Menu");
+        MenuRes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuResMouseClicked(evt);
+            }
+        });
+        MenuRes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuResActionPerformed(evt);
+            }
+        });
+        AdminMenuBar.add(MenuRes);
+
+        OrderMenu.setText("Order");
+        OrderMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OrderMenuMouseClicked(evt);
+            }
+        });
+        AdminMenuBar.add(OrderMenu);
+
+        TransaksiMenu.setText("Transaksi");
+        TransaksiMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TransaksiMenuMouseClicked(evt);
+            }
+        });
+        AdminMenuBar.add(TransaksiMenu);
+
+        LaporanMenu.setText("Laporan");
+        AdminMenuBar.add(LaporanMenu);
+
+        AccountMenu.setText("Account");
         AccountMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AccountMenuMouseClicked(evt);
             }
         });
         AdminMenuBar.add(AccountMenu);
-
-        OrderMenu.setText("Order");
-        AdminMenuBar.add(OrderMenu);
-
-        TransaksiMenu.setText("Transaksi");
-        AdminMenuBar.add(TransaksiMenu);
-
-        LaporanMenu.setText("Laporan");
-        AdminMenuBar.add(LaporanMenu);
 
         setJMenuBar(AdminMenuBar);
 
@@ -83,7 +142,7 @@ public final class Admin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 303, Short.MAX_VALUE)
+            .addGap(0, 323, Short.MAX_VALUE)
         );
 
         pack();
@@ -93,6 +152,45 @@ public final class Admin extends javax.swing.JFrame {
         // TODO add your handling code here:
         new Account(this, true).setVisible(true);
     }//GEN-LAST:event_AccountMenuMouseClicked
+
+    private void AddUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddUserMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddUserMouseClicked
+
+    private void AddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserActionPerformed
+        // TODO add your handling code here:
+        new Registrasi(this, true).setVisible(true);
+    }//GEN-LAST:event_AddUserActionPerformed
+
+    private void ManageUserMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageUserMenuMouseClicked
+        // TODO add your handling code here:
+        new ManageUser(this, true).setVisible(true);
+    }//GEN-LAST:event_ManageUserMenuMouseClicked
+
+    private void ManageUserMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageUserMenuActionPerformed
+        // TODO add your handling code here:
+        new ManageUser(this, true).setVisible(true);
+    }//GEN-LAST:event_ManageUserMenuActionPerformed
+
+    private void MenuResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuResActionPerformed
+        // TODO add your handling code here:
+        new Menu(this, true).setVisible(true);
+    }//GEN-LAST:event_MenuResActionPerformed
+
+    private void MenuResMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuResMouseClicked
+        // TODO add your handling code here:
+        new Menu(this, true).setVisible(true);
+    }//GEN-LAST:event_MenuResMouseClicked
+
+    private void OrderMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderMenuMouseClicked
+        // TODO add your handling code here:
+        new OrderMenu(this, true).setVisible(true);
+    }//GEN-LAST:event_OrderMenuMouseClicked
+
+    private void TransaksiMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TransaksiMenuMouseClicked
+        // TODO add your handling code here:
+        new Transaksi(this, true).setVisible(true);
+    }//GEN-LAST:event_TransaksiMenuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -135,9 +233,11 @@ public final class Admin extends javax.swing.JFrame {
     private javax.swing.JMenuItem AddUser;
     private javax.swing.JMenuBar AdminMenuBar;
     private javax.swing.JMenu LaporanMenu;
+    private javax.swing.JMenuItem ManageUserMenu;
+    private javax.swing.JMenu MenuRes;
     private javax.swing.JMenu OrderMenu;
     private javax.swing.JMenu TransaksiMenu;
     private javax.swing.JMenu UserMenu;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu jMenu1;
     // End of variables declaration//GEN-END:variables
 }

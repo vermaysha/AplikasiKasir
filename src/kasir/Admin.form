@@ -2,6 +2,15 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
+    <Container class="javax.swing.JMenu" name="jMenu1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jMenu1"/>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+    </Container>
     <Menu class="javax.swing.JMenuBar" name="AdminMenuBar">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="UserMenu">
@@ -13,36 +22,59 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add User"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="AddUserMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddUserActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="ManageUserMenu">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manage User"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ManageUserMenuMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ManageUserMenuActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="AccountMenu">
+        <Menu class="javax.swing.JMenu" name="MenuRes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Menu"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="AccountMenuMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MenuResMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuResActionPerformed"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="OrderMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Order"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="OrderMenuMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="TransaksiMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Transaksi"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TransaksiMenuMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="LaporanMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Laporan"/>
           </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="AccountMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Account"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="AccountMenuMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
@@ -76,7 +108,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="303" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="323" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>

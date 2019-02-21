@@ -20,6 +20,7 @@ public class Login extends javax.swing.JFrame {
     public static int id;
     public static int id_meja;
     public static String fullname;
+    public static String role;
     
     private Connection conn;
     private PreparedStatement stmt;
@@ -126,32 +127,19 @@ public class Login extends javax.swing.JFrame {
             stmt.setString(2, Password.getText());
             rs = stmt.executeQuery();
             if (rs.next()) {
+                String level = rs.getString("nama_level");
                 Login.username = rs.getString("username");
                 Login.password = rs.getString("password");
                 Login.id = rs.getInt("id_user");
                 Login.fullname = rs.getString("nama_user");
                 Login.id_meja = rs.getInt("id_meja");
+                Login.role = level;
                 
-                String role = rs.getString("nama_level");
-                
-                switch (role) {
-                    case "Administrator":
-                        new Admin().setVisible(true);
-                        break;
-                    case "Waiter":
-                        new Waiter().setVisible(true);
-                        break;
-                    case "Kasir":
-                        new Kasir().setVisible(true);
-                        break;
-                    case "Owner":
-                        new Owner().setVisible(true);
-                        break;
-                    default:
-                        new Pelanggan().setVisible(true);
-                        break;
+                if ("pelanggan".equals(level)) {
+                    new Pelanggan().setVisible(true);
+                } else {
+                    new Admin().setVisible(true);
                 }
-                
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Kata sandi atau nama pengguna anda salah !");

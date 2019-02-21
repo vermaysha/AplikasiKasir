@@ -5,9 +5,9 @@
  */
 package kasir;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.logging.*;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -210,7 +210,7 @@ public final class Pelanggan extends javax.swing.JFrame {
 
         try {
             java.util.Date dt = new java.util.Date();
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            java.text.SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
            String currentTime = sdf.format(dt);
             conn = Database.getCon();
