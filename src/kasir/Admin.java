@@ -5,13 +5,23 @@
  */
 package kasir;
 
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lib.Database;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 
 /**
  *
  * @author ashary
  */
-public final class Admin extends javax.swing.JFrame {
-    
+public final class Admin extends javax.swing.JFrame {    
     /**
      * Creates new form Dashboard
      */
@@ -122,6 +132,11 @@ public final class Admin extends javax.swing.JFrame {
         AdminMenuBar.add(TransaksiMenu);
 
         LaporanMenu.setText("Laporan");
+        LaporanMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LaporanMenuMouseClicked(evt);
+            }
+        });
         AdminMenuBar.add(LaporanMenu);
 
         AccountMenu.setText("Account");
@@ -192,6 +207,19 @@ public final class Admin extends javax.swing.JFrame {
         new Transaksi(this, true).setVisible(true);
     }//GEN-LAST:event_TransaksiMenuMouseClicked
 
+    private void LaporanMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LaporanMenuMouseClicked
+        try {
+            String namafile= "src/kasir/Laporan.jasper"; 
+            File report = new File(namafile);
+            JasperReport jreprt;
+            jreprt = (JasperReport) JRLoader.loadObject(report);
+            JasperPrint jprintt = JasperFillManager.fillReport(jreprt,null, Database.getCon());
+            JasperViewer.viewReport(jprintt,false);
+        } catch (JRException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_LaporanMenuMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -208,13 +236,7 @@ public final class Admin extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
