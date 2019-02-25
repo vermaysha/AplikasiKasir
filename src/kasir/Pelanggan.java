@@ -100,12 +100,12 @@ public final class Pelanggan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        ScrollbarTable = new javax.swing.JScrollPane();
         TableBarang = new javax.swing.JTable();
         Pesan = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        NomorMejaLabel = new javax.swing.JLabel();
         NomorMeja = new javax.swing.JTextField();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        MenuBar = new javax.swing.JMenuBar();
         Logout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -124,7 +124,7 @@ public final class Pelanggan extends javax.swing.JFrame {
                 TableBarangMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(TableBarang);
+        ScrollbarTable.setViewportView(TableBarang);
 
         Pesan.setText("Pesan");
         Pesan.setEnabled(false);
@@ -139,7 +139,7 @@ public final class Pelanggan extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Nomor Meja");
+        NomorMejaLabel.setText("Nomor Meja");
 
         NomorMeja.setEnabled(false);
         NomorMeja.addActionListener(new java.awt.event.ActionListener() {
@@ -149,22 +149,22 @@ public final class Pelanggan extends javax.swing.JFrame {
         });
 
         Logout.setText("Keluar");
-        jMenuBar1.add(Logout);
+        MenuBar.add(Logout);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(MenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+            .addComponent(ScrollbarTable, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Pesan)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(NomorMejaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(NomorMeja, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -174,10 +174,10 @@ public final class Pelanggan extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(NomorMejaLabel)
                     .addComponent(NomorMeja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ScrollbarTable, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Pesan)
                 .addContainerGap())
@@ -287,11 +287,11 @@ public final class Pelanggan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Logout;
+    private javax.swing.JMenuBar MenuBar;
     private javax.swing.JTextField NomorMeja;
+    private javax.swing.JLabel NomorMejaLabel;
     private javax.swing.JButton Pesan;
+    private javax.swing.JScrollPane ScrollbarTable;
     private javax.swing.JTable TableBarang;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -41,20 +41,20 @@ public class Account extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        UsernameLabel = new javax.swing.JLabel();
+        PasswordLabel = new javax.swing.JLabel();
         Username = new javax.swing.JTextField();
         Save = new javax.swing.JButton();
         Password = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
+        FullnamePassword = new javax.swing.JLabel();
         Fullname = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Account");
 
-        jLabel1.setText("Username");
+        UsernameLabel.setText("Username");
 
-        jLabel2.setText("Password");
+        PasswordLabel.setText("Password");
 
         Save.setText("Simpan");
         Save.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +63,7 @@ public class Account extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setText("Fullname");
+        FullnamePassword.setText("Fullname");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,9 +77,9 @@ public class Account extends javax.swing.JDialog {
                         .addComponent(Save))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(UsernameLabel)
+                            .addComponent(PasswordLabel)
+                            .addComponent(FullnamePassword))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Username)
@@ -93,15 +93,15 @@ public class Account extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(UsernameLabel)
                     .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(FullnamePassword)
                     .addComponent(Fullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(PasswordLabel)
                     .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(Save)
@@ -173,11 +173,11 @@ public class Account extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Fullname;
+    private javax.swing.JLabel FullnamePassword;
     private javax.swing.JPasswordField Password;
+    private javax.swing.JLabel PasswordLabel;
     private javax.swing.JButton Save;
     private javax.swing.JTextField Username;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel UsernameLabel;
     // End of variables declaration//GEN-END:variables
 }

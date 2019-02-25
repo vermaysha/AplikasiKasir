@@ -95,7 +95,7 @@ public class Transaksi extends javax.swing.JDialog {
         NomorMejaLabel = new javax.swing.JLabel();
         NomorMeja = new javax.swing.JTextField();
         Proses = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        ScrollPanelTable = new javax.swing.JScrollPane();
         TableMenu = new javax.swing.JTable();
         Cetak = new javax.swing.JButton();
         JumlahLabel = new javax.swing.JLabel();
@@ -127,7 +127,7 @@ public class Transaksi extends javax.swing.JDialog {
             }
         ));
         TableMenu.setEnabled(false);
-        jScrollPane1.setViewportView(TableMenu);
+        ScrollPanelTable.setViewportView(TableMenu);
 
         Cetak.setText("Cetak");
         Cetak.setEnabled(false);
@@ -146,7 +146,7 @@ public class Transaksi extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+            .addComponent(ScrollPanelTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(NomorMejaLabel)
@@ -178,7 +178,7 @@ public class Transaksi extends javax.swing.JDialog {
                     .addComponent(Proses)
                     .addComponent(Cetak))
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ScrollPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JumlahLabel)
@@ -287,7 +287,7 @@ public class Transaksi extends javax.swing.JDialog {
     private javax.swing.JTextField NomorMeja;
     private javax.swing.JLabel NomorMejaLabel;
     private javax.swing.JButton Proses;
+    private javax.swing.JScrollPane ScrollPanelTable;
     private javax.swing.JTable TableMenu;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

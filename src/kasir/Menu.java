@@ -36,6 +36,10 @@ public class Menu extends javax.swing.JDialog {
     public Menu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        showDataToTable();
+    }
+    
+    public void showDataToTable() {
         try {
             conn = Database.getCon();
             stmt = conn.createStatement();
@@ -154,7 +158,11 @@ public class Menu extends javax.swing.JDialog {
 
     private void EditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBtnActionPerformed
         // TODO add your handling code here:
+        TableModel table = TableBarang.getModel();
+        int row = TableBarang.getSelectedRow();
+        new EditMenu(null, true, Integer.parseInt((String) table.getValueAt(row, 0))).setVisible(true);
         EditBtn.setEnabled(false);
+        showDataToTable();
     }//GEN-LAST:event_EditBtnActionPerformed
 
     private void NewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewBtnActionPerformed

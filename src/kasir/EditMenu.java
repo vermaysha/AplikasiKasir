@@ -5,19 +5,65 @@
  */
 package kasir;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lib.Database;
+
 /**
  *
  * @author ashary
  */
 public class EditMenu extends javax.swing.JDialog {
+    
+    private Connection conn;
+    private Statement stmt;
+    private PreparedStatement pstmt;
+    private ResultSet rs;
+    private int id;
 
     /**
      * Creates new form EditMenu
+     * @param parent
+     * @param modal
      */
     public EditMenu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
+    
+    /**
+     * Creates new form EditMenu
+     * @param parent
+     * @param modal
+     * @param id
+     */
+    public EditMenu(java.awt.Frame parent, boolean modal, int id) {
+        super(parent, modal);
+        initComponents();
+        
+        this.id = id;
+        try {
+            conn = Database.getCon();
+            stmt = conn.createStatement();
+            
+            pstmt = conn.prepareStatement("SELECT * FROM `masakan` WHERE `id_masakan` = ? LIMIT 1");
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                Nama.setText(rs.getString("nama_masakan"));
+                Harga.setText(rs.getString("harga"));
+                Status.setSelectedIndex(rs.getInt("status_masakan"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ManageUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,21 +74,93 @@ public class EditMenu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        NamaLabel = new javax.swing.JLabel();
+        HargaLabel = new javax.swing.JLabel();
+        StatusLabel = new javax.swing.JLabel();
+        Nama = new javax.swing.JTextField();
+        Harga = new javax.swing.JFormattedTextField();
+        Status = new javax.swing.JComboBox();
+        UbahBtn = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        NamaLabel.setText("Nama");
+
+        HargaLabel.setText("Harga");
+
+        StatusLabel.setText("Status");
+
+        Harga.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("Rp #,##0"))));
+
+        Status.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Habis", "Tersedia" }));
+
+        UbahBtn.setText("Ubah");
+        UbahBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(UbahBtn)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NamaLabel)
+                            .addComponent(HargaLabel)
+                            .addComponent(StatusLabel))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Nama)
+                            .addComponent(Harga)
+                            .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NamaLabel)
+                    .addComponent(Nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(HargaLabel)
+                    .addComponent(Harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(StatusLabel)
+                    .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(UbahBtn)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void UbahBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahBtnActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            conn = Database.getCon();
+            pstmt = conn.prepareStatement("UPDATE `masakan` SET `nama_masakan` = ?, `harga` = ?, `status_masakan` = ? WHERE `id_masakan` = ?");
+            pstmt.setString(1, Nama.getText());
+            pstmt.setString(2, Harga.getText());
+            pstmt.setInt(3, Status.getSelectedIndex());
+            pstmt.setInt(4, this.id);
+            pstmt.executeUpdate();
+            stmt.close();
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_UbahBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,5 +205,12 @@ public class EditMenu extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField Harga;
+    private javax.swing.JLabel HargaLabel;
+    private javax.swing.JTextField Nama;
+    private javax.swing.JLabel NamaLabel;
+    private javax.swing.JComboBox Status;
+    private javax.swing.JLabel StatusLabel;
+    private javax.swing.JButton UbahBtn;
     // End of variables declaration//GEN-END:variables
 }
