@@ -168,6 +168,7 @@ public class Menu extends javax.swing.JDialog {
     private void NewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewBtnActionPerformed
         // TODO add your handling code here:
         new NewMenu(null, true).setVisible(true);
+        showDataToTable();
     }//GEN-LAST:event_NewBtnActionPerformed
 
     /**

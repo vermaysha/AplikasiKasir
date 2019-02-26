@@ -5,14 +5,31 @@
  */
 package kasir;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lib.Database;
+
 /**
  *
  * @author ashary
  */
 public class NewMenu extends javax.swing.JDialog {
+    
+    private Connection conn;
+    private Statement stmt;
+    private PreparedStatement pstmt;
+    private ResultSet rs;
+    private int id;
 
     /**
      * Creates new form NewMenu
+     * @param parent
+     * @param modal
      */
     public NewMenu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -28,21 +45,92 @@ public class NewMenu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Harga = new javax.swing.JFormattedTextField();
+        Status = new javax.swing.JComboBox();
+        SimpanBtn = new javax.swing.JButton();
+        NamaLabel = new javax.swing.JLabel();
+        HargaLabel = new javax.swing.JLabel();
+        StatusLabel = new javax.swing.JLabel();
+        Nama = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        Harga.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("Rp #,##0"))));
+
+        Status.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Habis", "Tersedia" }));
+
+        SimpanBtn.setText("Simpan");
+        SimpanBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SimpanBtnActionPerformed(evt);
+            }
+        });
+
+        NamaLabel.setText("Nama");
+
+        HargaLabel.setText("Harga");
+
+        StatusLabel.setText("Status");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(SimpanBtn)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NamaLabel)
+                            .addComponent(HargaLabel)
+                            .addComponent(StatusLabel))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Nama)
+                            .addComponent(Harga)
+                            .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NamaLabel)
+                    .addComponent(Nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(HargaLabel)
+                    .addComponent(Harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(StatusLabel)
+                    .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(SimpanBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SimpanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimpanBtnActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            conn = Database.getCon();
+            pstmt = conn.prepareStatement("INSERT INTO `masakan` (`nama_masakan`, `harga`, `status_masakan`) VALUES (?, ?, ?)");
+            pstmt.setString(1, Nama.getText());
+            pstmt.setString(2, Harga.getText());
+            pstmt.setInt(3, Status.getSelectedIndex());
+            pstmt.executeUpdate();
+            stmt.close();
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_SimpanBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,5 +175,16 @@ public class NewMenu extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField Harga;
+    private javax.swing.JLabel HargaLabel;
+    private javax.swing.JTextField Nama;
+    private javax.swing.JLabel NamaLabel;
+    private javax.swing.JButton SimpanBtn;
+    private javax.swing.JComboBox Status;
+    private javax.swing.JLabel StatusLabel;
+    private javax.swing.JButton UbahBtn;
+    private javax.swing.JButton UbahBtn1;
+    private javax.swing.JButton UbahBtn2;
+    private javax.swing.JButton UbahBtn3;
     // End of variables declaration//GEN-END:variables
 }
